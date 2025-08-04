@@ -185,10 +185,8 @@ export default function Hero() {
       doc.setTextColor(40, 40, 40)
       doc.text("English, Hindi, Marathi", 20, 205)
 
-      // Open PDF in new tab instead of downloading
-      const pdfBlob = doc.output("blob")
-      const pdfUrl = URL.createObjectURL(pdfBlob)
-      window.open(pdfUrl, "_blank")
+      // Save the PDF with proper filename
+      doc.save("Nikhil_Patil_CV.pdf")
     } catch (error) {
       console.error("Error generating PDF:", error)
       // Fallback to text file if PDF generation fails
@@ -214,16 +212,16 @@ export default function Hero() {
       <div className="container mx-auto px-4 relative z-10 h-full">
         <div className="grid lg:grid-cols-2 gap-8 items-center max-w-7xl mx-auto min-h-screen">
           {/* Left Content */}
-          <div className="text-center lg:text-left flex flex-col justify-center">
+          <div className="text-center lg:text-left flex flex-col justify-center order-2 lg:order-1">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="mb-8"
+              className="mb-6 lg:mb-8"
             >
-              <div className="inline-block p-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-6">
-                <div className="bg-slate-900 px-6 py-2 rounded-full">
-                  <span className="text-sm font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <div className="inline-block p-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-4 lg:mb-6">
+                <div className="bg-slate-900 px-4 lg:px-6 py-2 rounded-full">
+                  <span className="text-xs lg:text-sm font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                     Available for opportunities
                   </span>
                 </div>
@@ -234,7 +232,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 lg:mb-6"
             >
               Hi, I'm{" "}
               <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Nikhil</span>
@@ -244,7 +242,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg md:text-xl lg:text-2xl text-gray-200 mb-6 leading-relaxed font-medium"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 mb-4 lg:mb-6 leading-relaxed font-medium"
             >
               Dynamic Web Developer specializing in responsive design and full-stack applications
             </motion.p>
@@ -253,7 +251,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-base md:text-lg text-gray-300 mb-8 leading-relaxed"
+              className="text-sm sm:text-base md:text-lg text-gray-300 mb-6 lg:mb-8 leading-relaxed"
             >
               Proven problem-solver adept at optimizing performance and enhancing user experience. Strong collaborator
               committed to delivering high-quality projects.
@@ -263,33 +261,33 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-12"
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-8 lg:mb-12"
             >
               <button
                 onClick={downloadCV}
-                className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center gap-2 transform hover:scale-105"
+                className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 lg:px-8 py-3 lg:py-4 rounded-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center gap-2 transform hover:scale-105 text-sm lg:text-base"
               >
-                <Download size={20} />
-                View CV (PDF)
+                <Download size={18} className="lg:w-5 lg:h-5" />
+                Download CV (PDF)
                 <div className="group-hover:translate-x-1 transition-transform duration-200">→</div>
               </button>
 
-              <div className="flex gap-4">
+              <div className="flex gap-3 lg:gap-4">
                 <a
                   href="https://github.com/nikkkhil2935"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20 hover:scale-110 hover:border-white/40"
+                  className="p-3 lg:p-4 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20 hover:scale-110 hover:border-white/40"
                 >
-                  <Github size={20} className="text-white" />
+                  <Github size={18} className="lg:w-5 lg:h-5 text-white" />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/nikhil-patil-139137258"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20 hover:scale-110 hover:border-white/40"
+                  className="p-3 lg:p-4 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20 hover:scale-110 hover:border-white/40"
                 >
-                  <Linkedin size={20} className="text-white" />
+                  <Linkedin size={18} className="lg:w-5 lg:h-5 text-white" />
                 </a>
               </div>
             </motion.div>
@@ -301,7 +299,7 @@ export default function Hero() {
               onClick={scrollToAbout}
               className="animate-bounce text-white/60 hover:text-white transition-colors duration-200 lg:hidden"
             >
-              <ArrowDown size={32} />
+              <ArrowDown size={28} className="lg:w-8 lg:h-8" />
             </motion.button>
           </div>
 
@@ -310,18 +308,29 @@ export default function Hero() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="relative h-screen lg:h-full w-full flex items-center justify-center"
+            className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-screen w-full flex items-center justify-center order-1 lg:order-2"
           >
-            <div className="w-full h-full min-h-[600px] lg:min-h-screen relative">
+            <div className="w-full h-full relative">
               <spline-viewer
+                hint
+                loading-anim-type="spinner-small-light"
                 url="https://prod.spline.design/qssUnA6RhM0xDvpQ/scene.splinecode"
                 className="w-full h-full"
-                style={{ width: "100%", height: "100%" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "block",
+                }}
               >
                 <img
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAANCAYAAADISGwcAAAG1ElEQVR4AQCBAH7/AAIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAIEAfv8AAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBEAgQB+/wACDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQCBAH7/AAIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAIEAfv8AAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBEAgQB+/wACDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQCBAH7/AAIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAIEAfv8AAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBEAgQB+/wACDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQCBAH7/AAIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAIEAfv8AAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBEAgQB+/wACDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQGBAH7/AAIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRBXNWIRxzRfQAAAAASUVORK5CYII="
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAANCAYAAADISGwcAAAG1ElEQVR4AQCBAH7/ABouMBwaLjAZGi4wExouMAsaLjADGi4wABouMAAaLjAAGi4wABouMAAaLjAHGi4wEhouMB4aLjAoGi4wMBouMDQaLjA0Gi4wMBouMCgaLjAeGi4wEhouMAcaLjAAGi4wABouMAAaLjAAGi4wABouMAMaLjALGi4wExouMBkaLjAcAIEAfv8AGi4wFxouMBQaLjAPGi4wCBouMAAaLjAAGi4wABouMAAaLjAAGi4wARouMAsaLjAXGi4wIxouMC4aLjA2Gi4wOxouMDsaLjA2Gi4wLhouMCMaLjAXGi4wCxouMAEaLjAAGi4wABouMAAaLjAAGi4wARouMAkaLjAQGi4wFRouMBgAgQB+/wAaLjASGi4wEBouMAsaLjAFGi4wABouMAAaLjAAGi4wABouMAAaLjAJGi4wFRouMCIaLjAwGi4wPBouMEUaLjBJGi4wSRouMEUaLjA8Gi4wMBouMCIaLjAVGi4wCRouMAAaLjAAGi4wABouMAAaLjABGi4wBxouMA0aLjASGi4wFQCBAH7/ABouMBIaLjAQGi4wDBouMAcaLjADGi4wARouMAEaLjAFGi4wDRouMBgaLjAmGi4wNRouMEQaLjBRGi4wWxouMGAaLjBgGi4wWxouMFEaLjBEGi4wNBouMCUaLjAXGi4wDRouMAUaLjACGi4wAhouMAUaLjAKGi4wDxouMBMaLjAVAIEAfv8AGi4wFxouMBUaLjASGi4wDxouMAwaLjAMGi4wDhouMBQaLjAeGi4wKxouMDsaLjBMGi4wXRouMGsaLjB1Gi4wehouMHoaLjB0Gi4waRouMFoaLjBKGi4wORouMCkaLjAcGi4wEhouMA0aLjALGi4wDRouMBAaLjAUGi4wFxouMBkAgQB+/wAaLjAeGi4wHRouMBoaLjAYGi4wFhouMBcaLjAbGi4wIhouMC0aLjA8Gi4wTRouMF8aLjBwGi4wfxouMIkaLjCPGi4wjhouMIcaLjB8Gi4wbBouMFoaLjBHGi4wNhouMCgaLjAdGi4wFhouMBMaLjATGi4wFRouMBkaLjAbGi4wHQCBAH7/ABouMCEaLjAgGi4wHhouMBwaLjAbGi4wHBouMCAaLjAoGi4wMxouMEIaLjBUGi4wZhouMHcaLjCGGi4wkBouMJUaLjCUGi4wjRouMIAaLjBwGi4wXhouMEsaLjA5Gi4wKhouMB4aLjAXGi4wFBouMBMaLjAVGi4wGBouMBsaLjAdAIEAfv8AGi4wHhouMB0aLjAaGi4wGBouMBYaLjAXGi4wGxouMCIaLjAtGi4wOxouMEwaLjBdGi4wbhouMHwaLjCFGi4wihouMIgaLjCBGi4wdRouMGUaLjBSGi4wQBouMC4aLjAgGi4wFRouMA8aLjAMGi4wDBouMA8aLjASGi4wFRouMBcAgQB+/wAaLjAXGi4wFRouMBIaLjAPGi4wDRouMAwaLjAOGi4wFBouMB0aLjAqGi4wORouMEkaLjBYGi4wZRouMG4aLjByGi4wcBouMGkaLjBdGi4wThouMD0aLjArGi4wHBouMA8aLjAGGi4wARouMAAaLjACGi4wBhouMAoaLjAOGi4wEACBAH7/ABouMBIaLjAQGi4wDBouMAgaLjAEGi4wARouMAIaLjAFGi4wDRouMBcaLjAkGi4wMhouMEAaLjBMGi4wVBouMFcaLjBVGi4wTxouMEQaLjA2Gi4wJhouMBcaLjAJGi4wABouMAAaLjAAGi4wABouMAAaLjAAGi4wBhouMAsaLjANAIEAfv8AGi4wEhouMBAaLjALGi4wBhouMAAaLjAAGi4wABouMAAaLjABGi4wCRouMBQaLjAhGi4wLhouMDcaLjA/Gi4wQhouMEAaLjA6Gi4wMBouMCMaLjAVGi4wCBouMAAaLjAAGi4wABouMAAaLjAAGi4wABouMAIaLjAKGi4wEBouMBMAgQB+/wAaLjAXGi4wFBouMA8aLjAJGi4wAhouMAAaLjAAGi4wABouMAAaLjADGi4wDBouMBcaLjAiGi4wKxouMDIaLjA1Gi4wMxouMC4aLjAlGi4wGRouMA0aLjACGi4wABouMAAaLjAAGi4wABouMAAaLjABGi4wChouMBIaLjAZGi4wHQGBAH7/ABouMBwaLjAZGi4wExouMAwaLjAFGi4wABouMAAaLjAAGi4wABouMAEaLjAJGi4wFBouMB4aLjAnGi4wLRouMDAaLjAuGi4wKhouMCEaLjAWGi4wCxouMAAaLjAAGi4wABouMAAaLjAAGi4wABouMAYaLjAQGi4wGhouMCEaLjAka2P7ESdKGSsAAAAASUVORK5CYII="
                   alt="Spline preview"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: "0.5rem",
+                  }}
                 />
               </spline-viewer>
             </div>

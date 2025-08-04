@@ -1,70 +1,144 @@
-import { Code, Database, Globe, Wrench } from "lucide-react"
+"use client"
+
+import { motion } from "framer-motion"
+import { Code, Server, GitBranch, Users } from "lucide-react"
 
 export default function Skills() {
   const skillCategories = [
     {
       title: "Frontend Development",
-      icon: <Globe className="text-blue-600" size={24} />,
+      icon: Code,
       skills: ["HTML5", "CSS3", "JavaScript", "React.js", "Tailwind CSS"],
-      color: "blue",
+      color: "from-blue-500 to-cyan-500",
     },
     {
       title: "Backend Development",
-      icon: <Database className="text-green-600" size={24} />,
+      icon: Server,
       skills: ["Node.js", "Express.js", "API Integration"],
-      color: "green",
+      color: "from-green-500 to-emerald-500",
     },
     {
-      title: "Development Tools",
-      icon: <Wrench className="text-purple-600" size={24} />,
+      title: "Tools & Platforms",
+      icon: GitBranch,
       skills: ["Git", "GitHub", "Vercel", "Netlify"],
-      color: "purple",
+      color: "from-purple-500 to-pink-500",
     },
     {
       title: "Soft Skills",
-      icon: <Code className="text-orange-600" size={24} />,
-      skills: ["Communication", "Problem Solving", "Team Collaboration", "Project Management"],
-      color: "orange",
+      icon: Users,
+      skills: ["Communication", "Problem Solving", "Team Collaboration"],
+      color: "from-orange-500 to-red-500",
     },
   ]
 
-  const getColorClasses = (color: string) => {
-    const colors = {
-      blue: "bg-blue-50 border-blue-200",
-      green: "bg-green-50 border-green-200",
-      purple: "bg-purple-50 border-purple-200",
-      orange: "bg-orange-50 border-orange-200",
-    }
-    return colors[color as keyof typeof colors] || colors.blue
-  }
+  const languages = [
+    { name: "English", level: "Fluent", percentage: 90 },
+    { name: "Hindi", level: "Native", percentage: 100 },
+    { name: "Marathi", level: "Native", percentage: 100 },
+  ]
 
   return (
-    <section id="skills" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">Skills & Technologies</h2>
+    <section id="skills" className="py-20 bg-white relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-40"></div>
+        <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-purple-100 rounded-full blur-3xl opacity-30"></div>
+      </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {skillCategories.map((category, index) => (
-              <div
-                key={index}
-                className={`p-6 rounded-xl border-2 ${getColorClasses(category.color)} hover:shadow-lg transition-shadow duration-300`}
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  {category.icon}
-                  <h3 className="font-bold text-gray-800">{category.title}</h3>
-                </div>
-                <div className="space-y-2">
-                  {category.skills.map((skill, skillIndex) => (
-                    <div key={skillIndex} className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                      <span className="text-gray-800 text-sm">{skill}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              My{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Skills</span>
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
+            <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto">
+              A comprehensive overview of my technical skills and expertise in web development
+            </p>
+          </motion.div>
+
+          {/* Technical Skills */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {skillCategories.map((category, index) => {
+              const IconComponent = category.icon
+              return (
+                <motion.div
+                  key={category.title}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 group"
+                >
+                  <div
+                    className={`w-12 h-12 bg-gradient-to-r ${category.color} rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+                  >
+                    <IconComponent className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">{category.title}</h3>
+                  <div className="space-y-2">
+                    {category.skills.map((skill, skillIndex) => (
+                      <motion.div
+                        key={skill}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 + skillIndex * 0.1 }}
+                        viewport={{ once: true }}
+                        className="px-3 py-2 bg-gray-50 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                      >
+                        {skill}
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              )
+            })}
           </div>
+
+          {/* Languages */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-100"
+          >
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Languages</h3>
+              <p className="text-gray-600">Communication skills across multiple languages</p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {languages.map((language, index) => (
+                <motion.div
+                  key={language.name}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="text-center"
+                >
+                  <div className="relative w-24 h-24 mx-auto mb-4">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"></div>
+                    <div className="absolute inset-1 bg-white rounded-full flex items-center justify-center">
+                      <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        {language.percentage}%
+                      </span>
+                    </div>
+                  </div>
+                  <h4 className="font-semibold text-gray-900 mb-1">{language.name}</h4>
+                  <p className="text-sm text-gray-600">{language.level}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
