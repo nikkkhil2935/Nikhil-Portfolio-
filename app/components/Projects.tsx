@@ -1,57 +1,86 @@
 "use client"
 
+import { ExternalLink, Github, Lightbulb, ShoppingCart, ChefHat } from "lucide-react"
 import { motion } from "framer-motion"
-import { ExternalLink, Github, Brain, ShoppingBag, ChefHat } from "lucide-react"
 
 export default function Projects() {
   const projects = [
     {
       title: "ReviseAI",
       description: "AI-powered business idea validation platform using Lean Startup principles",
+      icon: <Lightbulb className="text-yellow-600" size={32} />,
       features: [
-        "Guides users through a structured funnel: free call → UI prototype → MVP testing",
-        "Emphasizes impact + profitability, with features like mission statements, OKRs, user-testing, and landing-page creation",
+        "Structured funnel: free call → UI prototype → MVP testing",
+        "Emphasizes impact + profitability",
+        "Mission statements and OKRs integration",
+        "User-testing and landing-page creation tools",
       ],
-      technologies: ["React.js", "AI Integration", "Node.js", "Lean Startup"],
+      technologies: ["React.js", "Node.js", "AI Integration", "Lean Startup"],
+      gradient: "from-yellow-400 to-orange-500",
       liveUrl: "https://reviseai.vercel.app/",
       githubUrl: "https://github.com/nikkkhil2935",
-      icon: Brain,
-      gradient: "from-blue-500 to-cyan-500",
     },
     {
       title: "Maria Bakery",
-      description: "E-commerce style bakery storefront with inventory, product listings, and stock statuses",
+      description: "E-commerce style bakery storefront with comprehensive inventory management",
+      icon: <ShoppingCart className="text-pink-600" size={32} />,
       features: [
-        "Displays product details like prices, availability, and user reviews/ratings",
-        "Includes order form and About section, with clean UI/UX",
+        "Product listings with inventory and stock statuses",
+        "Detailed product information with prices and availability",
+        "User reviews and ratings system",
+        "Order form and About section with clean UI/UX",
       ],
       technologies: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
+      gradient: "from-pink-400 to-rose-500",
       liveUrl: "https://mariabakery.vercel.app/",
       githubUrl: "https://github.com/nikkkhil2935",
-      icon: ShoppingBag,
-      gradient: "from-pink-500 to-rose-500",
     },
     {
       title: "Recipe Hub",
       description: "Modern recipe sharing platform with search and filtering capabilities",
+      icon: <ChefHat className="text-green-600" size={32} />,
       features: [
-        "Comprehensive recipe database with advanced search functionality",
-        "User-friendly interface with responsive design and filtering options",
+        "Comprehensive recipe database with search functionality",
+        "Advanced filtering by cuisine, dietary preferences, and ingredients",
+        "User-friendly interface with responsive design",
+        "Recipe details with ingredients, instructions, and nutritional info",
       ],
       technologies: ["React.js", "JavaScript", "CSS3", "API Integration"],
+      gradient: "from-green-400 to-emerald-500",
       liveUrl: "https://recipessssssss.vercel.app/",
       githubUrl: "https://github.com/nikkkhil2935",
-      icon: ChefHat,
-      gradient: "from-green-500 to-emerald-500",
     },
   ]
 
   return (
-    <section id="projects" className="py-20 bg-gray-50 relative overflow-hidden">
-      {/* Background decoration */}
+    <section id="projects" className="py-20 bg-gradient-to-br from-gray-900 to-slate-800 relative overflow-hidden">
+      {/* Background animations */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-200/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl"></div>
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.4, 0.7, 0.4],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -59,96 +88,122 @@ export default function Projects() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Featured{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                 Projects
               </span>
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
-            <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto">
-              Here are some of my recent projects that showcase my skills in web development and problem-solving
+            <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+              Showcasing my passion for creating innovative solutions and exceptional user experiences
             </p>
           </motion.div>
 
           <div className="grid lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => {
-              const IconComponent = project.icon
-              return (
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="group bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-500 border border-white/10 hover:border-white/20 hover:shadow-2xl hover:shadow-blue-500/10"
+              >
                 <motion.div
-                  key={project.title}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                  className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-300 group"
+                  className={`bg-gradient-to-r ${project.gradient} p-8 relative overflow-hidden`}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
-                  {/* Header */}
-                  <div className={`bg-gradient-to-r ${project.gradient} p-6 text-white relative overflow-hidden`}>
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
-                    <div className="relative z-10">
-                      <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-4">
-                        <IconComponent className="w-6 h-6" />
-                      </div>
-                      <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                      <p className="text-white/90 text-sm">{project.description}</p>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <div className="space-y-4 mb-6">
-                      {project.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                          <p className="text-gray-700 text-sm leading-relaxed">{feature}</p>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Technologies */}
-                    <div className="mb-6">
-                      <h4 className="font-semibold text-gray-900 mb-3">Technologies Used</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech, techIndex) => (
-                          <span
-                            key={techIndex}
-                            className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Links */}
-                    <div className="flex gap-3">
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg font-medium text-center hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 group-hover:scale-105"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        Live Demo
-                      </a>
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 group-hover:scale-105"
-                      >
-                        <Github className="w-5 h-5 text-gray-600" />
-                      </a>
-                    </div>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+                  <div className="relative z-10">
+                    <motion.div
+                      className="flex items-center gap-4 mb-4"
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    >
+                      <div className="bg-white/20 p-3 rounded-xl backdrop-blur-sm">{project.icon}</div>
+                      <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+                    </motion.div>
+                    <p className="text-white/90 leading-relaxed">{project.description}</p>
                   </div>
                 </motion.div>
-              )
-            })}
+
+                <div className="p-8">
+                  <h4 className="font-semibold text-white mb-4 text-lg">Key Features:</h4>
+                  <ul className="space-y-3 mb-8">
+                    {project.features.map((feature, featureIndex) => (
+                      <motion.li
+                        key={featureIndex}
+                        className="flex items-start gap-3"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: featureIndex * 0.1 }}
+                        viewport={{ once: true }}
+                      >
+                        <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-gray-200 text-sm leading-relaxed">{feature}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+
+                  <div className="mb-8">
+                    <h4 className="font-semibold text-white mb-4 text-lg">Technologies:</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, techIndex) => (
+                        <motion.span
+                          key={techIndex}
+                          className="px-3 py-1 bg-white/10 text-gray-200 rounded-full text-sm backdrop-blur-sm border border-white/20"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3, delay: techIndex * 0.1 }}
+                          viewport={{ once: true }}
+                          whileHover={{ scale: 1.1 }}
+                        >
+                          {tech}
+                        </motion.span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3">
+                    <motion.a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 flex-1 justify-center group"
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <ExternalLink size={16} />
+                      <span>Live Demo</span>
+                      <motion.div
+                        className="group-hover:translate-x-1 transition-transform duration-200"
+                        animate={{ x: [0, 3, 0] }}
+                        transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                      >
+                        →
+                      </motion.div>
+                    </motion.a>
+                    <motion.a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-6 py-3 bg-white/10 text-white rounded-xl hover:bg-white/20 transition-all duration-300 backdrop-blur-sm border border-white/20"
+                      whileHover={{ scale: 1.05, rotate: 5 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Github size={16} />
+                      <span>Code</span>
+                    </motion.a>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>

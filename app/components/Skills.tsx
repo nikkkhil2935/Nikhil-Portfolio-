@@ -1,144 +1,146 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Code, Server, GitBranch, Users } from "lucide-react"
+import { Code, Database, Globe, Wrench } from "lucide-react"
 
 export default function Skills() {
   const skillCategories = [
     {
       title: "Frontend Development",
-      icon: Code,
+      icon: <Globe className="text-blue-600" size={24} />,
       skills: ["HTML5", "CSS3", "JavaScript", "React.js", "Tailwind CSS"],
-      color: "from-blue-500 to-cyan-500",
+      color: "blue",
     },
     {
       title: "Backend Development",
-      icon: Server,
+      icon: <Database className="text-green-600" size={24} />,
       skills: ["Node.js", "Express.js", "API Integration"],
-      color: "from-green-500 to-emerald-500",
+      color: "green",
     },
     {
-      title: "Tools & Platforms",
-      icon: GitBranch,
+      title: "Development Tools",
+      icon: <Wrench className="text-purple-600" size={24} />,
       skills: ["Git", "GitHub", "Vercel", "Netlify"],
-      color: "from-purple-500 to-pink-500",
+      color: "purple",
     },
     {
       title: "Soft Skills",
-      icon: Users,
-      skills: ["Communication", "Problem Solving", "Team Collaboration"],
-      color: "from-orange-500 to-red-500",
+      icon: <Code className="text-orange-600" size={24} />,
+      skills: ["Communication", "Problem Solving", "Team Collaboration", "Project Management"],
+      color: "orange",
     },
   ]
 
-  const languages = [
-    { name: "English", level: "Fluent", percentage: 90 },
-    { name: "Hindi", level: "Native", percentage: 100 },
-    { name: "Marathi", level: "Native", percentage: 100 },
-  ]
+  const getColorClasses = (color: string) => {
+    const colors = {
+      blue: "bg-blue-50 border-blue-200 hover:bg-blue-100",
+      green: "bg-green-50 border-green-200 hover:bg-green-100",
+      purple: "bg-purple-50 border-purple-200 hover:bg-purple-100",
+      orange: "bg-orange-50 border-orange-200 hover:bg-orange-100",
+    }
+    return colors[color as keyof typeof colors] || colors.blue
+  }
 
   return (
     <section id="skills" className="py-20 bg-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-40"></div>
-        <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-purple-100 rounded-full blur-3xl opacity-30"></div>
+        <motion.div
+          className="absolute top-1/3 right-1/4 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-40"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-purple-100 rounded-full blur-3xl opacity-30"
+          animate={{
+            scale: [1.1, 1, 1.1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <motion.div
+          <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-4xl font-bold text-center text-gray-800 mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              My{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Skills</span>
-            </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
-            <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto">
-              A comprehensive overview of my technical skills and expertise in web development
-            </p>
-          </motion.div>
+            Skills & Technologies
+          </motion.h2>
 
-          {/* Technical Skills */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {skillCategories.map((category, index) => {
-              const IconComponent = category.icon
-              return (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {skillCategories.map((category, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10, scale: 1.05 }}
+                className={`p-6 rounded-xl border-2 ${getColorClasses(category.color)} hover:shadow-lg transition-all duration-300`}
+              >
                 <motion.div
-                  key={category.title}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 group"
+                  className="flex items-center gap-3 mb-4"
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
-                  <div
-                    className={`w-12 h-12 bg-gradient-to-r ${category.color} rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+                  <motion.div
+                    animate={{ rotate: [0, 10, -10, 0] }}
+                    transition={{
+                      duration: 2,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "easeInOut",
+                      delay: index * 0.2,
+                    }}
                   >
-                    <IconComponent className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">{category.title}</h3>
-                  <div className="space-y-2">
-                    {category.skills.map((skill, skillIndex) => (
+                    {category.icon}
+                  </motion.div>
+                  <h3 className="font-bold text-gray-800">{category.title}</h3>
+                </motion.div>
+                <div className="space-y-2">
+                  {category.skills.map((skill, skillIndex) => (
+                    <motion.div
+                      key={skillIndex}
+                      className="flex items-center gap-2"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: skillIndex * 0.1 }}
+                      viewport={{ once: true }}
+                      whileHover={{ x: 5 }}
+                    >
                       <motion.div
-                        key={skill}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 + skillIndex * 0.1 }}
-                        viewport={{ once: true }}
-                        className="px-3 py-2 bg-gray-50 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors duration-200"
-                      >
-                        {skill}
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              )
-            })}
+                        className="w-2 h-2 bg-gray-400 rounded-full"
+                        animate={{ scale: [1, 1.3, 1] }}
+                        transition={{
+                          duration: 2,
+                          repeat: Number.POSITIVE_INFINITY,
+                          ease: "easeInOut",
+                          delay: skillIndex * 0.2,
+                        }}
+                      />
+                      <span className="text-gray-800 text-sm">{skill}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
           </div>
-
-          {/* Languages */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-100"
-          >
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Languages</h3>
-              <p className="text-gray-600">Communication skills across multiple languages</p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {languages.map((language, index) => (
-                <motion.div
-                  key={language.name}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="text-center"
-                >
-                  <div className="relative w-24 h-24 mx-auto mb-4">
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"></div>
-                    <div className="absolute inset-1 bg-white rounded-full flex items-center justify-center">
-                      <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                        {language.percentage}%
-                      </span>
-                    </div>
-                  </div>
-                  <h4 className="font-semibold text-gray-900 mb-1">{language.name}</h4>
-                  <p className="text-sm text-gray-600">{language.level}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>

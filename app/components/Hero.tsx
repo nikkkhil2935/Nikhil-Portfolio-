@@ -204,9 +204,44 @@ export default function Hero() {
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-20 relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.4, 0.7, 0.4],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.5, 0.2],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+        />
       </div>
 
       <div className="container mx-auto px-4 relative z-10 h-full">
@@ -219,13 +254,17 @@ export default function Hero() {
               transition={{ duration: 0.8 }}
               className="mb-6 lg:mb-8"
             >
-              <div className="inline-block p-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-4 lg:mb-6">
+              <motion.div
+                className="inline-block p-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-4 lg:mb-6"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
                 <div className="bg-slate-900 px-4 lg:px-6 py-2 rounded-full">
                   <span className="text-xs lg:text-sm font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                     Available for opportunities
                   </span>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
 
             <motion.h1
@@ -235,7 +274,19 @@ export default function Hero() {
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 lg:mb-6"
             >
               Hi, I'm{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Nikhil</span>
+              <motion.span
+                className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "linear",
+                }}
+              >
+                Nikhil
+              </motion.span>
             </motion.h1>
 
             <motion.p
@@ -263,32 +314,47 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-8 lg:mb-12"
             >
-              <button
+              <motion.button
                 onClick={downloadCV}
-                className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 lg:px-8 py-3 lg:py-4 rounded-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center gap-2 transform hover:scale-105 text-sm lg:text-base"
+                className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 lg:px-8 py-3 lg:py-4 rounded-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center gap-2 text-sm lg:text-base"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 <Download size={18} className="lg:w-5 lg:h-5" />
                 Download CV (PDF)
-                <div className="group-hover:translate-x-1 transition-transform duration-200">→</div>
-              </button>
+                <motion.div
+                  className="group-hover:translate-x-1 transition-transform duration-200"
+                  animate={{ x: [0, 3, 0] }}
+                  transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                >
+                  →
+                </motion.div>
+              </motion.button>
 
               <div className="flex gap-3 lg:gap-4">
-                <a
+                <motion.a
                   href="https://github.com/nikkkhil2935"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 lg:p-4 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20 hover:scale-110 hover:border-white/40"
+                  className="p-3 lg:p-4 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-white/40"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
                   <Github size={18} className="lg:w-5 lg:h-5 text-white" />
-                </a>
-                <a
+                </motion.a>
+                <motion.a
                   href="https://www.linkedin.com/in/nikhil-patil-139137258"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 lg:p-4 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20 hover:scale-110 hover:border-white/40"
+                  className="p-3 lg:p-4 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-white/40"
+                  whileHover={{ scale: 1.1, rotate: -5 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
                   <Linkedin size={18} className="lg:w-5 lg:h-5 text-white" />
-                </a>
+                </motion.a>
               </div>
             </motion.div>
 
@@ -297,7 +363,9 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1 }}
               onClick={scrollToAbout}
-              className="animate-bounce text-white/60 hover:text-white transition-colors duration-200 lg:hidden"
+              className="text-white/60 hover:text-white transition-colors duration-200 lg:hidden"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
             >
               <ArrowDown size={28} className="lg:w-8 lg:h-8" />
             </motion.button>
@@ -344,12 +412,14 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1.2 }}
           className="hidden lg:flex justify-center absolute bottom-8 left-1/2 transform -translate-x-1/2"
         >
-          <button
+          <motion.button
             onClick={scrollToAbout}
-            className="animate-bounce text-white/60 hover:text-white transition-colors duration-200"
+            className="text-white/60 hover:text-white transition-colors duration-200"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
           >
             <ArrowDown size={32} />
-          </button>
+          </motion.button>
         </motion.div>
       </div>
     </section>
