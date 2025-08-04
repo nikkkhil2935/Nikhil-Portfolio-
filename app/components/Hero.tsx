@@ -2,8 +2,25 @@
 
 import { ArrowDown, Github, Linkedin, Download } from "lucide-react"
 import { motion } from "framer-motion"
+import { useEffect } from "react"
 
 export default function Hero() {
+  useEffect(() => {
+    // Load Spline viewer script
+    const script = document.createElement("script")
+    script.type = "module"
+    script.src = "https://unpkg.com/@splinetool/viewer@1.10.39/build/spline-viewer.js"
+    script.async = true
+    document.head.appendChild(script)
+
+    return () => {
+      // Cleanup script on unmount
+      if (document.head.contains(script)) {
+        document.head.removeChild(script)
+      }
+    }
+  }, [])
+
   const scrollToAbout = () => {
     const element = document.getElementById("about")
     if (element) {
@@ -194,97 +211,137 @@ export default function Hero() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
       </div>
 
-      <div className="container mx-auto px-4 text-center relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-8"
-          >
-            <div className="inline-block p-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-6">
-              <div className="bg-slate-900 px-6 py-2 rounded-full">
-                <span className="text-sm font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  Available for opportunities
-                </span>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-bold text-white mb-6"
-          >
-            Hi, I'm{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Nikhil</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed font-medium"
-          >
-            Dynamic Web Developer specializing in responsive design and full-stack applications
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed"
-          >
-            Proven problem-solver adept at optimizing performance and enhancing user experience. Strong collaborator
-            committed to delivering high-quality projects.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
-          >
-            <button
-              onClick={downloadCV}
-              className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center gap-2 transform hover:scale-105"
+      <div className="container mx-auto px-4 relative z-10 h-full">
+        <div className="grid lg:grid-cols-2 gap-8 items-center max-w-7xl mx-auto min-h-screen">
+          {/* Left Content */}
+          <div className="text-center lg:text-left flex flex-col justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="mb-8"
             >
-              <Download size={20} />
-              View CV (PDF)
-              <div className="group-hover:translate-x-1 transition-transform duration-200">→</div>
-            </button>
+              <div className="inline-block p-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-6">
+                <div className="bg-slate-900 px-6 py-2 rounded-full">
+                  <span className="text-sm font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                    Available for opportunities
+                  </span>
+                </div>
+              </div>
+            </motion.div>
 
-            <div className="flex gap-4">
-              <a
-                href="https://github.com/nikkkhil2935"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20 hover:scale-110 hover:border-white/40"
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
+            >
+              Hi, I'm{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Nikhil</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-lg md:text-xl lg:text-2xl text-gray-200 mb-6 leading-relaxed font-medium"
+            >
+              Dynamic Web Developer specializing in responsive design and full-stack applications
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-base md:text-lg text-gray-300 mb-8 leading-relaxed"
+            >
+              Proven problem-solver adept at optimizing performance and enhancing user experience. Strong collaborator
+              committed to delivering high-quality projects.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-12"
+            >
+              <button
+                onClick={downloadCV}
+                className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center gap-2 transform hover:scale-105"
               >
-                <Github size={20} className="text-white" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/nikhil-patil-139137258"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20 hover:scale-110 hover:border-white/40"
+                <Download size={20} />
+                View CV (PDF)
+                <div className="group-hover:translate-x-1 transition-transform duration-200">→</div>
+              </button>
+
+              <div className="flex gap-4">
+                <a
+                  href="https://github.com/nikkkhil2935"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-4 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20 hover:scale-110 hover:border-white/40"
+                >
+                  <Github size={20} className="text-white" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/nikhil-patil-139137258"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-4 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20 hover:scale-110 hover:border-white/40"
+                >
+                  <Linkedin size={20} className="text-white" />
+                </a>
+              </div>
+            </motion.div>
+
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              onClick={scrollToAbout}
+              className="animate-bounce text-white/60 hover:text-white transition-colors duration-200 lg:hidden"
+            >
+              <ArrowDown size={32} />
+            </motion.button>
+          </div>
+
+          {/* Right 3D Model - Full Height */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="relative h-screen lg:h-full w-full flex items-center justify-center"
+          >
+            <div className="w-full h-full min-h-[600px] lg:min-h-screen relative">
+              <spline-viewer
+                url="https://prod.spline.design/qssUnA6RhM0xDvpQ/scene.splinecode"
+                className="w-full h-full"
+                style={{ width: "100%", height: "100%" }}
               >
-                <Linkedin size={20} className="text-white" />
-              </a>
+                <img
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAANCAYAAADISGwcAAAG1ElEQVR4AQCBAH7/AAIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAIEAfv8AAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBEAgQB+/wACDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQCBAH7/AAIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAIEAfv8AAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBEAgQB+/wACDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQCBAH7/AAIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAIEAfv8AAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBEAgQB+/wACDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQCBAH7/AAIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAIEAfv8AAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBEAgQB+/wACDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQGBAH7/AAIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRAg4UEQIOFBECDhQRBXNWIRxzRfQAAAAASUVORK5CYII="
+                  alt="Spline preview"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </spline-viewer>
             </div>
           </motion.div>
+        </div>
 
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1 }}
+        {/* Scroll indicator for desktop */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="hidden lg:flex justify-center absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        >
+          <button
             onClick={scrollToAbout}
             className="animate-bounce text-white/60 hover:text-white transition-colors duration-200"
           >
             <ArrowDown size={32} />
-          </motion.button>
-        </div>
+          </button>
+        </motion.div>
       </div>
     </section>
   )
